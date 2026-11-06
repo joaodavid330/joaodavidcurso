@@ -1,0 +1,233 @@
+:root {
+  --roxo: #6c3fc5;
+  --roxo-escuro: #4b2a94;
+  --roxo-claro: #ede7fb;
+  --verde: #0f8b6d;
+  --verde-claro: #def5ee;
+  --fundo: #f6f4fc;
+  --texto: #1d1b3a;
+  --texto-suave: #6b6985;
+  --raio: 20px;
+  --sombra: 0 4px 20px rgba(29, 27, 58, 0.07);
+  --sombra-forte: 0 14px 34px rgba(108, 63, 197, 0.2);
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  background-color: var(--fundo);
+  color: var(--texto);
+  line-height: 1.6;
+}
+header {
+  background: linear-gradient(135deg, var(--roxo-escuro), var(--roxo) 55%, #9a6bff);
+  color: white;
+  text-align: center;
+  padding: 72px 20px 88px;
+  border-radius: 0 0 40px 40px;
+}
+.selo {
+  display: inline-block;
+  padding: 6px 16px;
+  margin-bottom: 18px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+}
+header h1 {
+  margin: 0 0 10px;
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+header p {
+  margin: 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+main {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.texto {
+  max-width: 760px;
+  margin: 48px auto;
+  padding: 28px 32px;
+  background: white;
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+.texto h2 {
+  margin: 0 0 12px;
+  font-size: 1.5rem;
+  color: var(--roxo);
+}
+.texto p {
+  margin: 0;
+  color: #3b3956;
+  text-align: justify;
+}
+.filtros {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 auto 32px;
+  padding: 6px;
+  width: fit-content;
+  background: white;
+  border-radius: 999px;
+  box-shadow: var(--sombra);
+}
+.filtros button {
+  padding: 10px 26px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--texto-suave);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
+}
+.filtros button:hover {
+  background: var(--roxo-claro);
+  color: var(--roxo);
+}
+.filtros button.ativo {
+  background: var(--roxo);
+  color: white;
+}
+.filtros button:active {
+  transform: scale(0.96);
+}
+.filtros button:focus-visible {
+  outline: 3px solid #b79cf0;
+  outline-offset: 2px;
+}
+.cartoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+  padding-bottom: 24px;
+}
+.cartao {
+  position: relative;
+  padding: 24px;
+  background: white;
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: aparecer 0.4s ease;
+}
+.cartao::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 6px;
+  background: var(--roxo);
+}
+.cartao.brasil::before {
+  background: var(--verde);
+}
+.cartao:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sombra-forte);
+}
+.cartao-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--roxo-claro);
+  color: var(--roxo);
+  font-weight: 700;
+  font-size: 1rem;
+}
+.cartao.brasil .avatar {
+  background: var(--verde-claro);
+  color: var(--verde);
+}
+.etiqueta {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--roxo-claro);
+  color: var(--roxo);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.cartao.brasil .etiqueta {
+  background: var(--verde-claro);
+  color: var(--verde);
+}
+.cartao h2 {
+  margin: 0 0 4px;
+  font-size: 1.25rem;
+  line-height: 1.25;
+}
+.cartao .info {
+  margin: 0 0 12px;
+  color: var(--texto-suave);
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+.cartao p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+.escondido {
+  display: none !important;
+}
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+footer {
+  margin-top: 40px;
+  padding: 32px 20px;
+  text-align: center;
+  background: var(--texto);
+  color: #cfcde6;
+  border-radius: 40px 40px 0 0;
+}
+footer p {
+  margin: 2px 0;
+}
+footer strong {
+  color: white;
+}
+@media (max-width: 600px) {
+  header {
+    padding: 56px 20px 72px;
+  }
+  .texto {
+    padding: 22px 20px;
+  }
+  .texto p {
+    text-align: left;
+  }
+}
